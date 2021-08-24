@@ -1,0 +1,22 @@
+﻿@model UserLoginModel
+
+<h2 class="display-3 mb-2 text-center">Login</h2>
+<form asp-action="Login" method="post" asp-route-returnUrl="@ViewData["ReturnUrl"]">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="mb-3">
+        <label asp-for="UserName" class="form-label"></label>
+        <input asp-for="UserName" class="form-control" aria-describedby="UserName">
+        <span id="UserName" class="form-text text-danger" asp-validation-for="UserName"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Password" class="form-label"></label>
+        <input asp-for="Password" class="form-control" aria-describedby="Password">
+        <span id="Password" class="form-text text-danger" asp-validation-for="Password"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

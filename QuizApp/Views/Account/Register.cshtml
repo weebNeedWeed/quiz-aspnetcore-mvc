@@ -1,0 +1,26 @@
+﻿@model UserRegistrationModel
+
+<h2 class="display-3 mb-2 text-center">Register</h2>
+<form asp-action="Register" method="post">
+    <div class="mb-3">
+        <label asp-for="UserName" class="form-label"></label>
+        <input asp-for="UserName" class="form-control" aria-describedby="UserName">
+        <span id="UserName" class="form-text text-danger" asp-validation-for="UserName"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Password" class="form-label"></label>
+        <input asp-for="Password" class="form-control" aria-describedby="Password">
+        <span id="Password" class="form-text text-danger" asp-validation-for="Password"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="ConfirmPassword" class="form-label"></label>
+        <input asp-for="ConfirmPassword" class="form-control" aria-describedby="ConfirmPassword">
+        <span id="ConfirmPassword" class="form-text text-danger" asp-validation-for="ConfirmPassword"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
