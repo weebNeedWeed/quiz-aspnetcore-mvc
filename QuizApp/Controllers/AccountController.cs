@@ -48,7 +48,7 @@ namespace QuizApp.Controllers
                 return View(userModel);
             }
 
-            await _userManager.AddToRoleAsync(user, "Default");
+            await _userManager.AddToRoleAsync(user, "User");
 
             return RedirectToAction("Index", "Home");
         }

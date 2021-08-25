@@ -2,25 +2,27 @@
 @inject UserManager<AppUser> UserManager
 @inject SignInManager<AppUser> SignInManager
 
-@if (SignInManager.IsSignedIn(User))
-{
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
 
-    <li class="nav-item">
-        <a class="nav-link text-dark" style="cursor: pointer">@User.Identity.Name</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
-    </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" style="cursor: pointer">@User.Identity.Name</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+        </li>
 
-}
-else
-{
+    }
+    else
+    {
 
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
-    </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+        </li>
 
-}
+    }
+</ul>

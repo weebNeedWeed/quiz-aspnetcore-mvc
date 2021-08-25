@@ -10,8 +10,8 @@ using QuizApp.Data;
 namespace QuizApp.Migrations
 {
     [DbContext(typeof(QuizContext))]
-    [Migration("20210824175159_Init")]
-    partial class Init
+    [Migration("20210825190246_Initialize")]
+    partial class Initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -45,22 +45,22 @@ namespace QuizApp.Migrations
                         .HasDatabaseName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
-                    b.ToTable("AspNetRoles");
+                    b.ToTable("AppRoles");
 
                     b.HasData(
                         new
                         {
-                            Id = "e9a303b2-a98c-4706-b80c-475728c82218",
-                            ConcurrencyStamp = "612c96f3-0cfa-4883-b7c7-ce8cb800006c",
-                            Name = "Default",
-                            NormalizedName = "DEFAULT"
+                            Id = "a57a1a27-c89e-4d99-bb69-a4004b61a432",
+                            ConcurrencyStamp = "ff1f48ee-f9f8-4f36-9a61-acc941b32e22",
+                            Name = "User",
+                            NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "a181d6ea-aabf-4974-9c8b-f24585cfd6a8",
-                            ConcurrencyStamp = "99218235-55f6-4ad3-a7d2-f57b74a436a5",
-                            Name = "Administrator",
-                            NormalizedName = "ADMINISTRATOR"
+                            Id = "b98e6aec-9ea2-4edf-9c34-358aad03a713",
+                            ConcurrencyStamp = "a16b6d6c-8c69-4a23-8bb4-d8afc24d29a9",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
                         });
                 });
 
@@ -85,7 +85,7 @@ namespace QuizApp.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetRoleClaims");
+                    b.ToTable("AppRoleClaims");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -109,7 +109,7 @@ namespace QuizApp.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserClaims");
+                    b.ToTable("AppUserClaims");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -131,7 +131,7 @@ namespace QuizApp.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserLogins");
+                    b.ToTable("AppUserLogins");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
@@ -146,7 +146,7 @@ namespace QuizApp.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetUserRoles");
+                    b.ToTable("AppUserRoles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -165,7 +165,7 @@ namespace QuizApp.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("AspNetUserTokens");
+                    b.ToTable("AppUserTokens");
                 });
 
             modelBuilder.Entity("QuizApp.Models.Answer", b =>
@@ -191,6 +191,57 @@ namespace QuizApp.Migrations
                     b.HasIndex("QuestionId");
 
                     b.ToTable("Answers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Correct = false,
+                            QuestionId = 1,
+                            Title = "A. 1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Correct = true,
+                            QuestionId = 1,
+                            Title = "B. 2"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Correct = false,
+                            QuestionId = 1,
+                            Title = "C. 3"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Correct = true,
+                            QuestionId = 2,
+                            Title = "A. 20"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Correct = false,
+                            QuestionId = 2,
+                            Title = "B. 9"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Correct = false,
+                            QuestionId = 3,
+                            Title = "A. 324"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Correct = true,
+                            QuestionId = 3,
+                            Title = "B. 81"
+                        });
                 });
 
             modelBuilder.Entity("QuizApp.Models.AppUser", b =>
@@ -255,7 +306,7 @@ namespace QuizApp.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("AspNetUsers");
+                    b.ToTable("AppUsers");
                 });
 
             modelBuilder.Entity("QuizApp.Models.Question", b =>
@@ -266,7 +317,6 @@ namespace QuizApp.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
@@ -283,6 +333,26 @@ namespace QuizApp.Migrations
                     b.HasIndex("QuizId");
 
                     b.ToTable("Questions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            QuizId = 1,
+                            Title = "1 + 1 = ?"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            QuizId = 1,
+                            Title = "9*9 = ?"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            QuizId = 2,
+                            Title = "5 * 4 = ?"
+                        });
                 });
 
             modelBuilder.Entity("QuizApp.Models.Quiz", b =>
@@ -305,6 +375,20 @@ namespace QuizApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Quizzes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Bai kiem tra 1",
+                            Title = "Test 1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Bai kiem tra 2",
+                            Title = "Test 2"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

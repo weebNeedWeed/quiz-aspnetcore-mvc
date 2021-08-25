@@ -12,7 +12,6 @@ namespace QuizApp.Models
         [Required]
         [StringLength(200)]
         public string Title { get; set; }
-        [Required]
         [StringLength(100)]
         public string Description { get; set; }
         public int QuizId { get; set; }
